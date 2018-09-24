@@ -106,9 +106,7 @@ public class Sudoku extends LatinSquare {
 	}
 	
 	public boolean isValidValue(int iCol, int iRow, int iValue) {
-		int[][] testPuzzle = getPuzzle();
-		testPuzzle[iCol][iRow] = iValue;
-		
+	
 		this.getPuzzle()[iCol][iRow] = iValue;
 		
 		for (int i = 0; i < this.getPuzzle().length; i++) {
