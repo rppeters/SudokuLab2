@@ -7,9 +7,20 @@ public class Sudoku extends LatinSquare {
 	
 	public Sudoku (int iSize) throws java.lang.Exception {
 		iSqrtSize = (int) Math.sqrt(iSize);
-		if (iSqrtSize*iSqrtSize != iSize) {
-			throw new Exception("iSize doesn't have a whole number square root.");
+		
+		try {
+			Double tempiSize = (Double)Math.sqrt(iSize);
+			if (Math.sqrt(iSize) % 1 != 0 || tempiSize.isNaN()) {
+				throw new java.lang.Exception();
+			} else {
+				this.iSize = iSize;
+				this.iSqrtSize = (int)Math.sqrt(iSize);
+			}
 		}
+		catch (Exception e) {
+			throw e;
+		}
+		
 	}
 	
 	public Sudoku (int[][] puzzle) throws java.lang.Exception {
