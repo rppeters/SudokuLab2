@@ -1,5 +1,7 @@
 package pkgHelper;
+
 import pkgHelper.LatinSquare;
+import java.util.Arrays;
 
 public class Sudoku extends LatinSquare {
 	private int iSize;
@@ -106,10 +108,18 @@ public class Sudoku extends LatinSquare {
 	}
 	
 	public boolean isValidValue(int iCol, int iRow, int iValue) {
-	
-		this.getPuzzle()[iCol][iRow] = iValue;
 		
-		for (int i = 0; i < this.getPuzzle().length; i++) {
+		int[][] copyPuzzle = new int[this.getPuzzle().length][this.getPuzzle()[0].length];
+		
+		//copy a 2-dimension array (prevent from automatically adding value to puzzle)
+		for (int row = 0; row < this.getPuzzle().length; row++) {
+			for (int col = 0; col < this.getPuzzle()[row].length; col++) {
+				copyPuzzle[row][col] = this.getPuzzle()[row][col];
+			}
+		}
+		copyPuzzle[iCol][iRow] = iValue;
+		
+		for (int i = 0; i < copyPuzzle.length; i++) {
 			if (hasDuplicates(getRow(i)))
 				return false;
 			if (hasDuplicates(getColumn(i)))
