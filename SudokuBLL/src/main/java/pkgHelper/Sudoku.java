@@ -8,7 +8,7 @@ public class Sudoku extends LatinSquare {
 	private int iSqrtSize;
 	
 	public Sudoku (int iSize) throws java.lang.Exception {
-		
+		super();
 		try {
 			Double tempiSize = (Double)Math.sqrt(iSize);
 			if (Math.sqrt(iSize) % 1 != 0 || tempiSize.isNaN()) {
@@ -25,6 +25,7 @@ public class Sudoku extends LatinSquare {
 	}
 	
 	public Sudoku (int[][] puzzle) throws java.lang.Exception {
+		super();
 		try {
 			Sudoku mySudoku = new Sudoku(puzzle.length);
 		}
@@ -35,7 +36,7 @@ public class Sudoku extends LatinSquare {
 	}
 	
 	public int[][] getPuzzle() {
-		return super.getLatinSquare();
+		return getLatinSquare();
 	}
 	
 	public int[] getRegion(int iCol, int iRow) {
@@ -64,12 +65,12 @@ public class Sudoku extends LatinSquare {
 			return false;
 		}
 		
-		for (int s = 0; s < this.getPuzzle().length; s++) {
-			if (super.hasDuplicates(getRegion(s))) {
+		for (int r = 0; r < this.iSize; r++) {
+			if (super.hasDuplicates(getRegion(r))) {
 				return false;
 			}
 			
-			if (!super.hasAllValues(getRow(0),getRegion(s))) {
+			if (!super.hasAllValues(getRow(0), getRegion(r))) {
 				return false;
 			}
 		}
@@ -95,7 +96,7 @@ public class Sudoku extends LatinSquare {
 			return false;
 		}
 		
-		for (int s = 0; s <this.getPuzzle().length; s++) {
+		for (int s = 0; s < this.getPuzzle().length; s++) {
 			if (super.hasDuplicates(getRegion(s))) {
 				return false;
 			}
