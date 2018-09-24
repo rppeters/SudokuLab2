@@ -6,7 +6,6 @@ public class Sudoku extends LatinSquare {
 	private int iSqrtSize;
 	
 	public Sudoku (int iSize) throws java.lang.Exception {
-		iSqrtSize = (int) Math.sqrt(iSize);
 		
 		try {
 			Double tempiSize = (Double)Math.sqrt(iSize);
@@ -24,7 +23,13 @@ public class Sudoku extends LatinSquare {
 	}
 	
 	public Sudoku (int[][] puzzle) throws java.lang.Exception {
-		Sudoku construct = new Sudoku(puzzle.length);
+		try {
+			Sudoku mySudoku = new Sudoku(puzzle.length);
+		}
+		catch (Exception e) {
+			throw e;
+		}
+		
 	}
 	
 	public int[][] getPuzzle() {
@@ -57,7 +62,7 @@ public class Sudoku extends LatinSquare {
 			return false;
 		}
 		
-		for (int s = 0; s <this.getPuzzle().length; s++) {
+		for (int s = 0; s < this.getPuzzle().length; s++) {
 			if (super.hasDuplicates(getRegion(s))) {
 				return false;
 			}
@@ -67,6 +72,18 @@ public class Sudoku extends LatinSquare {
 			}
 		}
 		
+		boolean hasZero = false;
+		for (int row = 0; row < this.getPuzzle().length; row++) {
+			for (int col = 0; col < this.getPuzzle()[row].length; col++) {
+				if (this.getPuzzle()[row][col] == 0) {
+					hasZero = true;
+					break;
+				}
+			}
+		}
+		if (!hasZero) {
+			return false;
+		}
 		
 		return true;
 	}
@@ -81,7 +98,7 @@ public class Sudoku extends LatinSquare {
 				return false;
 			}
 			
-			if (super.hasAllValues(getRow(0),getRegion(s))) {
+			if (!super.hasAllValues(getRow(0),getRegion(s))) {
 				return false;
 			}
 		}
@@ -92,13 +109,12 @@ public class Sudoku extends LatinSquare {
 		int[][] testPuzzle = getPuzzle();
 		testPuzzle[iCol][iRow] = iValue;
 		
-		for (int i = 0; i < testPuzzle.length; i++) {
+		this.getPuzzle()[iCol][iRow] = iValue;
+		
+		for (int i = 0; i < this.getPuzzle().length; i++) {
 			if (hasDuplicates(getRow(i)))
 				return false;
-		}
-
-		for (int j = 0; j < testPuzzle.length; j++) {
-			if (hasDuplicates(getColumn(j)))
+			if (hasDuplicates(getColumn(i)))
 				return false;
 		}
 
