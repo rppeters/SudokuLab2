@@ -2,6 +2,8 @@ package pkgHelper;
 
 import pkgHelper.LatinSquare;
 
+import java.util.Arrays;
+
 public class Sudoku extends LatinSquare {
 	private int iSize;
 	private int iSqrtSize;
@@ -111,9 +113,9 @@ public class Sudoku extends LatinSquare {
 	
 	public boolean isValidValue(int iCol, int iRow, int iValue) {
 
-		if ((doesElementExist(getRow(iRow), iValue)) || 
-				(doesElementExist(getColumn(iCol), iValue)) || 
-				(doesElementExist(getRegion(iCol, iRow), iValue))) {
+		if (doesElementExist(getRow(iRow), iValue) || 
+				doesElementExist(getColumn(iCol), iValue) || 
+				doesElementExist(getRegion(iCol, iRow), iValue)) {
 			return false;
 		}
 		return true;

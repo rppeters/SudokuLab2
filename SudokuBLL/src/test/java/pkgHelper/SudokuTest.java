@@ -97,10 +97,10 @@ public class SudokuTest {
 	public void isValueValid_Test() throws Exception {
 		int[][] zeros = {{1,1,1,1}, {1,1,1,1}, {1,1,1,1}, {1,1,1,1}};
 		Sudoku sz = new Sudoku(zeros);
-		assertTrue(sz.isValidValue(0, 0, 1));
+		assertTrue(sz.isValidValue(0, 0, 2));
 		
 		Sudoku s = new Sudoku(partialPuzzle);
-		assertTrue(s.isValidValue(3, 0, 4));
+		assertTrue(s.isValidValue(3, 0, 6));
 		assertFalse(s.isValidValue(8, 1, 7));
 		
 		int[][] puzzle2x2 = { {0,0,0,0}, {1,0,0,4}, {3,2,4,1}, {0,0,0,0}};
