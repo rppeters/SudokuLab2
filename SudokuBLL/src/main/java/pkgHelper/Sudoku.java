@@ -1,6 +1,7 @@
 package pkgHelper;
 
 import pkgHelper.LatinSquare;
+
 import java.util.Arrays;
 
 public class Sudoku extends LatinSquare {
@@ -8,7 +9,7 @@ public class Sudoku extends LatinSquare {
 	private int iSqrtSize;
 	
 	public Sudoku (int iSize) throws java.lang.Exception {
-		super();
+		super(new int[iSize][iSize]);
 		try {
 			Double tempiSize = (Double)Math.sqrt(iSize);
 			if (Math.sqrt(iSize) % 1 != 0 || tempiSize.isNaN()) {
@@ -25,9 +26,11 @@ public class Sudoku extends LatinSquare {
 	}
 	
 	public Sudoku (int[][] puzzle) throws java.lang.Exception {
-		super();
+		super(puzzle);
 		try {
 			Sudoku mySudoku = new Sudoku(puzzle.length);
+			this.iSize = puzzle.length;
+			this.iSqrtSize = (int)Math.sqrt(puzzle.length);
 		}
 		catch (Exception e) {
 			throw e;
@@ -46,6 +49,7 @@ public class Sudoku extends LatinSquare {
 	
 	public int[] getRegion(int r) {
 		int[] region = new int[super.getLatinSquare().length];
+		System.out.println(iSize);
 		int i = (r % iSqrtSize) * iSqrtSize;
 		int j = (r / iSqrtSize) * iSqrtSize;
 		int iMax = i + iSqrtSize;

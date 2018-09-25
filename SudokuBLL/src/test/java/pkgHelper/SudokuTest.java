@@ -38,6 +38,7 @@ public class SudokuTest {
 		
 		Sudoku s3 = new Sudoku(solvedPuzzle);
 		assertArrayEquals(s3.getPuzzle(), solvedPuzzle);
+		
 	}
 	
 	@Test
@@ -48,13 +49,13 @@ public class SudokuTest {
 		int[] region8 = {2,8,4,6,3,5,1,7,9};
 		System.out.println(s.getRegion(0));
 	
-		assertEquals(s.getRegion(0), region0);
-		assertEquals(s.getRegion(4), region4);
-		assertEquals(s.getRegion(8), region8);	
+		assertArrayEquals(s.getRegion(0), region0);
+		assertArrayEquals(s.getRegion(4), region4);
+		assertArrayEquals(s.getRegion(8), region8);	
 		
-		assertEquals(s.getRegion(0,0), region0);
-		assertEquals(s.getRegion(4,3), region4);
-		assertEquals(s.getRegion(6,8), region8);
+		assertArrayEquals(s.getRegion(0,0), region0);
+		assertArrayEquals(s.getRegion(4,3), region4);
+		assertArrayEquals(s.getRegion(6,8), region8);
 	}
 	
 	@Test
