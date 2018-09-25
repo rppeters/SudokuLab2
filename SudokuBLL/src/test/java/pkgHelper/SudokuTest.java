@@ -47,7 +47,6 @@ public class SudokuTest {
 		int[] region0 = {5,3,4,6,7,2,1,9,8};
 		int[] region4 = {7,6,1,8,5,3,9,2,4};
 		int[] region8 = {2,8,4,6,3,5,1,7,9};
-		System.out.println(s.getRegion(0));
 	
 		assertArrayEquals(s.getRegion(0), region0);
 		assertArrayEquals(s.getRegion(4), region4);
@@ -96,6 +95,10 @@ public class SudokuTest {
 	
 	@Test
 	public void isValueValid_Test() throws Exception {
+		int[][] zeros = {{1,1,1,1}, {1,1,1,1}, {1,1,1,1}, {1,1,1,1}};
+		Sudoku sz = new Sudoku(zeros);
+		assertTrue(sz.isValidValue(0, 0, 1));
+		
 		Sudoku s = new Sudoku(partialPuzzle);
 		assertTrue(s.isValidValue(3, 0, 4));
 		assertFalse(s.isValidValue(8, 1, 7));

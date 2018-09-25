@@ -2,8 +2,6 @@ package pkgHelper;
 
 import pkgHelper.LatinSquare;
 
-import java.util.Arrays;
-
 public class Sudoku extends LatinSquare {
 	private int iSize;
 	private int iSqrtSize;
