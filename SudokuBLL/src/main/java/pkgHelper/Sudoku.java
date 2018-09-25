@@ -113,12 +113,10 @@ public class Sudoku extends LatinSquare {
 	
 	public boolean isValidValue(int iCol, int iRow, int iValue) {
 
-		for (int i = 0; i < getPuzzle().length; i++) {
-			if ((doesElementExist(getRow(i), iValue)) || 
-					(doesElementExist(getColumn(i), iValue)) || 
-					(doesElementExist(getRegion(i), iValue))) {
-				return false;
-			}
+		if ((doesElementExist(getRow(iRow), iValue)) || 
+				(doesElementExist(getColumn(iCol), iValue)) || 
+				(doesElementExist(getRegion(iCol, iRow), iValue))) {
+			return false;
 		}
 		return true;
 	}
