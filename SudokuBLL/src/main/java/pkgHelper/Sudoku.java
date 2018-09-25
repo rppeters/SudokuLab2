@@ -36,7 +36,7 @@ public class Sudoku extends LatinSquare {
 	}
 	
 	public int[][] getPuzzle() {
-		return getLatinSquare();
+		return this.getLatinSquare();
 	}
 	
 	public int[] getRegion(int iCol, int iRow) {
@@ -109,24 +109,17 @@ public class Sudoku extends LatinSquare {
 	}
 	
 	public boolean isValidValue(int iCol, int iRow, int iValue) {
-		
-		int[][] copyPuzzle = new int[this.getPuzzle().length][this.getPuzzle()[0].length];
-		
-		//copy a 2-dimension array (prevent from automatically adding value to puzzle)
-		for (int row = 0; row < this.getPuzzle().length; row++) {
-			for (int col = 0; col < this.getPuzzle()[row].length; col++) {
-				copyPuzzle[row][col] = this.getPuzzle()[row][col];
+
+		for (int i = 0; i < getPuzzle().length; i++) {
+			if ((doesElementExist(getRow(i), iValue)) || 
+					(doesElementExist(getColumn(i), iValue)) || 
+					(doesElementExist(getRegion(i), iValue))) {
+				return false;
 			}
 		}
-		copyPuzzle[iCol][iRow] = iValue;
-		
-		for (int i = 0; i < copyPuzzle.length; i++) {
-			if (hasDuplicates(getRow(i)))
-				return false;
-			if (hasDuplicates(getColumn(i)))
-				return false;
-		}
-
 		return true;
-	}
+		}
 }
+
+
+

@@ -46,6 +46,7 @@ public class SudokuTest {
 		int[] region0 = {5,3,4,6,7,2,1,9,8};
 		int[] region4 = {7,6,1,8,5,3,9,2,4};
 		int[] region8 = {2,8,4,6,3,5,1,7,9};
+		System.out.println(s.getRegion(0));
 	
 		assertEquals(s.getRegion(0), region0);
 		assertEquals(s.getRegion(4), region4);
@@ -72,6 +73,35 @@ public class SudokuTest {
 		Sudoku s4 = new Sudoku(columnDuplicatesPuzzle);
 		assertFalse(s4.isPartialSudoku());
 	}
-
-
+	
+	@Test
+	public void isSudoku_Test() throws Exception {
+		Sudoku s = new Sudoku(solvedPuzzle);
+		
+		assertTrue(s.isSudoku());
+		
+		int[][] puzzle2x2 = { {1,2,3,4}, {3,4,2,1}, {2,1,4,3}, {4,3,1,2}};
+		Sudoku s2 = new Sudoku(puzzle2x2);
+		assertTrue(s2.isSudoku());
+		
+		int[][] zeroPuzzle = { {1,0,0,4}, {3,4,2,1}, {2,1,4,3}, {4,3,1,2}};
+		Sudoku s3 = new Sudoku(zeroPuzzle);
+		assertFalse(s3.isSudoku());
+		
+		int[][] wrongPuzzle = { {1,2,4,3}, {3,4,2,1}, {2,1,4,3}, {4,3,1,2}};
+		Sudoku s4 = new Sudoku(wrongPuzzle);
+		assertFalse(s4.isSudoku());
+	}
+	
+	@Test
+	public void isValueValid_Test() throws Exception {
+		Sudoku s = new Sudoku(partialPuzzle);
+		assertTrue(s.isValidValue(3, 0, 4));
+		assertFalse(s.isValidValue(8, 1, 7));
+		
+		int[][] puzzle2x2 = { {0,0,0,0}, {1,0,0,4}, {3,2,4,1}, {0,0,0,0}};
+		Sudoku s2 = new Sudoku(puzzle2x2);
+		assertTrue(s2.isValidValue(0, 0, 2));
+		assertFalse(s2.isValidValue(3, 3, 1));
+	}
 }
