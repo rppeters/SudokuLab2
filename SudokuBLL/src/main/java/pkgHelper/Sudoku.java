@@ -49,7 +49,6 @@ public class Sudoku extends LatinSquare {
 	
 	public int[] getRegion(int r) {
 		int[] region = new int[super.getLatinSquare().length];
-		System.out.println(iSize);
 		int i = (r % iSqrtSize) * iSqrtSize;
 		int j = (r / iSqrtSize) * iSqrtSize;
 		int iMax = i + iSqrtSize;
@@ -122,7 +121,7 @@ public class Sudoku extends LatinSquare {
 			}
 		}
 		return true;
-		}
+	}
 }
 
 
